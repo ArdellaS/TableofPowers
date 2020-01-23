@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 namespace TableOfPowers
 {
@@ -13,46 +13,48 @@ namespace TableOfPowers
             int a;
 
             Console.WriteLine("Learn your squares and cubes!\n");
-            Console.WriteLine("Please enter a number: ");
+
             do
             {
+                Console.WriteLine("Please enter a number: ");
                 bool checkNum = int.TryParse(Console.ReadLine(), out a);
 
-                do
+                if ((a <= 1290) && (a > 0))
                 {
-                    if ((a <= 1290) && (a > 0))
+
+                    Console.WriteLine($"Number\t\tSquared\t\tCubed");
+
+                    for (int i = 0; i < a; i++)
                     {
 
-                        Console.WriteLine($"Number\t\tSquared\t\tCubed");
+                        square = (int)Math.Pow(i + 1, 2);
+                        cube = (int)Math.Pow(i + 1, 3);
 
-                        for (int i = 0; i < a; i++)
-                        {
-
-                            square = (int)Math.Pow(i + 1, 2);
-                            cube = (int)Math.Pow(i + 1, 3);
-
-                            Console.WriteLine($"{i + 1,6}\t\t{square,6}\t\t{cube,6}");
-
-                        }
+                        Console.WriteLine($"{i + 1,6}\t\t{square,6}\t\t{cube,6}");
 
                     }
-                    else if (a > 1290)
-                    {
-                        Console.WriteLine("Number too high.\n");
-                        Console.Write("Please enter a lower number: ");
-                        checkNum = int.TryParse(Console.ReadLine(), out a);
-                        continue;
 
-                    }
-                    else
-                    {
-                        Console.Write("Number too low.\n");
-                        Console.Write("Please enter a lower number: ");
-                        checkNum = int.TryParse(Console.ReadLine(), out a);
-                        continue;
-                    }
+                }
+                else if (a > 1290)
+                {
+                    Console.WriteLine("Number too high.\n");
+                    Console.Write("Please enter a lower number: ");
+                    checkNum = int.TryParse(Console.ReadLine(), out a);
 
-                } while (!checkNum);
+                }
+                else if (a <= 0)
+                {
+                    Console.Write("Number too low.\n");
+                    Console.Write("Please enter a lower number: ");
+                    checkNum = int.TryParse(Console.ReadLine(), out a);
+
+                }
+                else
+                {
+                    Console.WriteLine("Input invalid");
+                    Console.WriteLine("Please enter a valid number: ");
+                }
+
 
                 Console.WriteLine($"\nWant to try another number? yes/no");
                 answer = Console.ReadLine();
